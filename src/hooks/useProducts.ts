@@ -8,12 +8,15 @@ export const useProducts = () => {
 
   return {
     allProducts,
+    products: allProducts, // Alias for compatibility
   };
 };
 
 export const useProductBySlug = (slug: string) => {
   const product = useMemo(() => getProductBySlug(slug), [slug]);
-  return product;
+  return {
+    product,
+  };
 };
 
 export const useFeaturedProducts = () => {
