@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useCartStore } from '@/stores/cartStore';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CartDrawer } from './CartDrawer';
 
 interface HeaderProps {
@@ -13,6 +13,11 @@ interface HeaderProps {
 export const Header = ({ showCart = true }: HeaderProps) => {
   const cartItems = useCartStore((state) => state.getTotalItems());
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <>
@@ -39,13 +44,15 @@ export const Header = ({ showCart = true }: HeaderProps) => {
           <div className="flex items-center gap-8">
             <ul className="hidden md:flex items-center gap-8">
               <li>
-                <Link href="/shop" className="font-medium hover:text-gray-600 transition-colors">
+                <Link href="/shop" className="relative font-medium text-black group pb-1">
                   Shop
+                  <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black transform origin-right scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 group-hover:origin-left" />
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="font-medium hover:text-gray-600 transition-colors">
+                <Link href="/blog" className="relative font-medium text-black group pb-1">
                   Insider Edition
+                  <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black transform origin-right scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 group-hover:origin-left" />
                 </Link>
               </li>
             </ul>
@@ -61,7 +68,7 @@ export const Header = ({ showCart = true }: HeaderProps) => {
                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                   />
                 </svg>
-                {cartItems > 0 && (
+                {isMounted && cartItems > 0 && (
                   <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center font-bold">
                     {cartItems}
                   </span>
