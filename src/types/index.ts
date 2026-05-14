@@ -58,10 +58,25 @@ export interface Testimonial {
   content: string;
   avatar?: string;
   image?: string;
+  productLink?: string;
+  productName?: string;
 }
 
 export interface NavLink {
   label: string;
   href: string;
   sublabel?: string;
+}
+
+export interface InsiderArticle {
+  id: string;
+  slug: string;
+  tag: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  image: string;
+  date: Date;
+  readTime: string;
+  category: string;
 }

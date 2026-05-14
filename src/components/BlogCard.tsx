@@ -24,7 +24,7 @@ export const BlogCard = ({
   return (
     <Link href={`/blog/${slug}`}>
       <article className="group cursor-pointer">
-        <div className="relative aspect-video bg-gray-100 rounded overflow-hidden mb-4">
+        <div className="relative aspect-video bg-gray-100 overflow-hidden mb-4">
           <Image
             src={image}
             alt={title}

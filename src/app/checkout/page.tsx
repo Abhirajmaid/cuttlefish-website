@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 export default function CheckoutPage() {
-  const { items, setShippingAddress, clearCheckout } = useCart()
+  const { items, setShippingAddress, setPaymentMethod, clearCheckout, clearCart } = useCart()
   const { placeOrder } = useOrderStore()
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
@@ -33,16 +33,17 @@ export default function CheckoutPage() {
     setIsLoading(true)
     try {
       setShippingAddress(address)
+      setPaymentMethod(paymentMethod)
 
       const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
       const shipping = subtotal >= 100 ? 0 : 10
-      const total = subtotal + shipping
 
-      placeOrder(items, total, address)
+      placeOrder(items, subtotal, shipping, address)
 
       // Simulate payment processing
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
+      clearCart()
       clearCheckout()
       router.push('/thank-you')
     } catch (error) {

@@ -10,7 +10,7 @@ import { Container } from './Container';
 
 interface FeaturedProductsSectionProps {
   products: Product[];
-  title: string;
+  title: React.ReactNode;
   subtitle?: string;
   showViewAllButton?: boolean;
   viewAllHref?: string;
@@ -24,14 +24,14 @@ export const FeaturedProductsSection = ({
   viewAllHref = '/shop',
 }: FeaturedProductsSectionProps) => {
   return (
-    <Section className="bg-white">
+    <Section className="border-t border-b border-gray-200 pb-12 md:pb-12 mb-16">  
       <Container>
         <div className="space-y-12">
           {/* Header */}
-          <div className="flex items-start justify-between gap-8">
+          <div className="flex items-start justify-between gap-8 rounded-xl bg-background/65 px-1 py-2 pt-8 backdrop-blur-md">
             <div className="flex-1 space-y-4">
               {subtitle && <Text variant="label">{subtitle}</Text>}
-              <Heading level={2}>{title}</Heading>
+              <Heading level={2} className='font-gambetta-italic-500 w-1/4'>{title}</Heading>
             </div>
             {showViewAllButton && (
               <Button href={viewAllHref} variant="ghost" className="whitespace-nowrap">

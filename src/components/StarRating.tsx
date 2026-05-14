@@ -20,7 +20,7 @@ export const StarRating = ({ rating, maxRating = 5, size = 'md', className = '' 
         <svg
           key={i}
           className={`${sizeClasses[size]} ${
-            i < Math.floor(rating) ? 'fill-yellow-400' : 'fill-gray-300'
+            i < Math.floor(rating) ? 'fill-pink-700' : 'fill-gray-300'
           }`}
           viewBox="0 0 20 20"
         >

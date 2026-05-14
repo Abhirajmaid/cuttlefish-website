@@ -41,13 +41,19 @@
 }
 
 :root {
-  --background: #ffffff;
+  /* --background: #ffffff; */
   --foreground: #171717;
+  --primary: #D96C8F;
+  --primary-l: #e9bdcb;
+  --secondary: #5B1833;
+  --background: #f8f4f1;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -71,6 +77,20 @@ body {
 
 .font-gambetta-italic {
   font-family: 'Gambetta-VariableItalic', serif;
+  /* Must match @font-face (font-style: italic) or the browser won’t pick this face and falls back to roman Gambetta. */
+  font-style: italic;
+}
+
+.font-gambetta-italic-400 {
+  font-family: 'Gambetta-VariableItalic', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.font-gambetta-italic-500 {
+  font-family: 'Gambetta-VariableItalic', serif;
+  font-style: italic;
+  font-weight: 500;
 }
 
 .font-supreme {
@@ -79,4 +99,76 @@ body {
 
 .font-supreme-italic {
   font-family: 'Supreme-VariableItalic', sans-serif;
+}
+
+@layer utilities {
+  .text-primary {
+    color: var(--primary);
+  }
+
+  .text-secondary {
+    color: var(--secondary);
+  }
+
+  .bg-primary {
+    background-color: var(--primary);
+  }
+
+  .bg-secondary {
+    background-color: var(--secondary);
+  }
+
+  .border-primary {
+    border-color: var(--primary);
+  }
+
+  .border-secondary {
+    border-color: var(--secondary);
+  }
+
+  /**
+   * Hero panel — Framer Parcel–style horizontal wash + frame, using brand tokens.
+   * Translucent stops let the layout shell column grid (layout.tsx) read through slightly.
+   * A second layer fades the surface into --background toward the bottom.
+   */
+  .hero-framer-surface {
+    border-radius: 24px;
+    /* border: 1px solid color-mix(in srgb, var(--primary) 42%, transparent); */
+    overflow: hidden;
+    background:
+      linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 42%,
+        color-mix(in srgb, var(--background) 55%, transparent) 78%,
+        var(--background) 100%
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--primary) 26%, transparent) 0%,
+        color-mix(in srgb, var(--background) 58%, transparent) 50%,
+        color-mix(in srgb, var(--secondary) 14%, transparent) 100%
+      );
+    box-shadow: 0 1px 0 color-mix(in srgb, var(--primary) 12%, transparent);
+  }
+
+  @supports not (background: color-mix(in srgb, red, blue)) {
+    .hero-framer-surface {
+      /* border: 1px solid rgba(217, 108, 143, 0.42); */
+      background:
+        linear-gradient(
+          to bottom,
+          transparent 0%,
+          transparent 42%,
+          rgba(248, 244, 241, 0.55) 78%,
+          rgb(248, 244, 241) 100%
+        ),
+        linear-gradient(
+          90deg,
+          rgba(217, 108, 143, 0.2) 0%,
+          rgba(248, 244, 241, 0.58) 50%,
+          rgba(91, 24, 51, 0.09) 100%
+        );
+    }
+  }
 }

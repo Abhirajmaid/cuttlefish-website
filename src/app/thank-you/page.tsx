@@ -5,7 +5,6 @@ import { OrderConfirmation } from '@/components/OrderConfirmation'
 import { useOrderStore } from '@/stores/orderStore'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { Heading } from '@/components/Heading'
 
 export default function ThankYouPage() {
   const { currentOrder } = useOrderStore()

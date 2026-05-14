@@ -61,7 +61,7 @@ export const CheckoutForm = ({ onSubmit, isLoading }: CheckoutFormProps) => {
               type="text"
               value={formData.fullName}
               onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-              className={`w-full px-3 py-2 border rounded ${
+              className={`w-full px-3 py-2 border ${
                 errors.fullName ? 'border-red-500' : ''
               }`}
               placeholder="John Doe"
@@ -80,7 +80,7 @@ export const CheckoutForm = ({ onSubmit, isLoading }: CheckoutFormProps) => {
               type="email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className={`w-full px-3 py-2 border rounded ${
+              className={`w-full px-3 py-2 border ${
                 errors.email ? 'border-red-500' : ''
               }`}
               placeholder="john@example.com"
@@ -99,7 +99,7 @@ export const CheckoutForm = ({ onSubmit, isLoading }: CheckoutFormProps) => {
               type="text"
               value={formData.address}
               onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-              className={`w-full px-3 py-2 border rounded ${
+              className={`w-full px-3 py-2 border ${
                 errors.address ? 'border-red-500' : ''
               }`}
               placeholder="123 Main St"
@@ -118,7 +118,7 @@ export const CheckoutForm = ({ onSubmit, isLoading }: CheckoutFormProps) => {
               type="text"
               value={formData.city}
               onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-              className={`w-full px-3 py-2 border rounded ${
+              className={`w-full px-3 py-2 border ${
                 errors.city ? 'border-red-500' : ''
               }`}
               placeholder="New York"
@@ -138,7 +138,7 @@ export const CheckoutForm = ({ onSubmit, isLoading }: CheckoutFormProps) => {
                 type="text"
                 value={formData.postalCode}
                 onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })}
-                className={`w-full px-3 py-2 border rounded ${
+                className={`w-full px-3 py-2 border ${
                   errors.postalCode ? 'border-red-500' : ''
                 }`}
                 placeholder="10001"
@@ -155,7 +155,7 @@ export const CheckoutForm = ({ onSubmit, isLoading }: CheckoutFormProps) => {
               <select
                 value={formData.country}
                 onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                className="w-full px-3 py-2 border rounded"
+                className="w-full px-3 py-2 border"
               >
                 <option value="US">United States</option>
                 <option value="CA">Canada</option>
@@ -195,7 +195,7 @@ export const CheckoutForm = ({ onSubmit, isLoading }: CheckoutFormProps) => {
       </div>
 
       {/* Submit */}
-      <Button type="submit" disabled={isLoading} className="w-full" size="lg">
+      <Button type="submit" disabled={isLoading} className="w-full py-4">
         {isLoading ? 'Processing...' : 'Place Order'}
       </Button>
     </form>

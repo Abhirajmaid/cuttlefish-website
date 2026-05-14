@@ -2,16 +2,27 @@
 
 import Link from 'next/link';
 import { ReactNode } from 'react';
+import { motion } from 'framer-motion';
+import { springSnappy, tapScale } from '@/lib/motion';
+
+const MotionLink = motion.create(Link);
+const MotionA = motion.a;
 
 interface ButtonProps {
   href?: string;
   onClick?: () => void;
   children: ReactNode;
-  variant?: 'primary' | 'secondary' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'outline';
   className?: string;
   disabled?: boolean;
   external?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
+
+const motionProps = {
+  whileHover: { y: -2, transition: springSnappy },
+  whileTap: tapScale,
+};
 
 export const Button = ({
   href,
@@ -21,14 +32,16 @@ export const Button = ({
   className = '',
   disabled = false,
   external = false,
+  type = 'button',
 }: ButtonProps) => {
   const baseStyles =
-    'inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-200';
+    'inline-flex items-center justify-center gap-2 px-6 py-3 font-medium transition-colors duration-200 rounded-full';
 
   const variants = {
     primary: 'bg-black text-white hover:bg-gray-800',
     secondary: 'bg-gray-200 text-black hover:bg-gray-300',
-    ghost: 'bg-transparent text-black border border-black hover:bg-black hover:text-white',
+    ghost: 'bg-transparent text-black hover:text-primary p-0',
+    outline: 'border border-black bg-transparent text-black hover:bg-secondary hover:text-white',
   };
 
   const finalClassName = `${baseStyles} ${variants[variant]} ${className}`;
@@ -36,21 +49,28 @@ export const Button = ({
   if (href) {
     if (external) {
       return (
-        <a href={href} className={finalClassName} target="_blank" rel="noopener noreferrer">
+        <MotionA href={href} className={finalClassName} target="_blank" rel="noopener noreferrer" {...motionProps}>
           {children}
-        </a>
+        </MotionA>
       );
     }
     return (
-      <Link href={href} className={finalClassName}>
+      <MotionLink href={href} className={finalClassName} {...motionProps}>
         {children}
-      </Link>
+      </MotionLink>
     );
   }
 
   return (
-    <button onClick={onClick} className={finalClassName} disabled={disabled}>
+    <motion.button
+      type={type}
+      onClick={onClick}
+      className={finalClassName}
+      disabled={disabled}
+      whileHover={disabled ? undefined : { y: -2, transition: springSnappy }}
+      whileTap={disabled ? undefined : tapScale}
+    >
       {children}
-    </button>
+    </motion.button>
   );
 };

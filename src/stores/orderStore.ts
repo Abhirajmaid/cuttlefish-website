@@ -5,7 +5,12 @@ import { Order, CartItem, ShippingAddress } from '@/types'
 interface OrderState {
   orders: Order[]
   currentOrder: Order | null
-  placeOrder: (items: CartItem[], total: number, shipping: ShippingAddress) => Order
+  placeOrder: (
+    items: CartItem[],
+    subtotal: number,
+    shippingCost: number,
+    shipping: ShippingAddress
+  ) => Order
   getOrderHistory: () => Order[]
   getOrderById: (id: string) => Order | null
 }
@@ -15,13 +20,13 @@ export const useOrderStore = create<OrderState>()(
     (set, get) => ({
       orders: [],
       currentOrder: null,
-      placeOrder: (items, total, shipping) => {
+      placeOrder: (items, subtotal, shippingCost, shipping) => {
         const order: Order = {
           id: `ORD-${Date.now()}`,
           items,
-          subtotal: total - 10, // Mock: assume $10 shipping
-          shippingCost: 10,
-          total,
+          subtotal,
+          shippingCost,
+          total: subtotal + shippingCost,
           shippingAddress: shipping,
           status: 'pending',
           createdAt: new Date(),

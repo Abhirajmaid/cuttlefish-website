@@ -1017,7 +1017,7 @@ export default function CartPage() {
                 cartWithDetails.map((item) => (
                   <div
                     key={item.productId}
-                    className="flex gap-4 border rounded p-4 bg-white"
+                    className="flex gap-4 border rounded p-4 bg-background"
                   >
                     {item.product && (
                       <>

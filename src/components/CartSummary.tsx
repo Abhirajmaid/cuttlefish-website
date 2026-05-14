@@ -16,7 +16,7 @@ export const CartSummary = () => {
 
   if (items.length === 0) {
     return (
-      <div className="bg-gray-50 p-8 rounded text-center">
+      <div className="bg-gray-50 p-8 text-center">
         <Heading level={3} className="mb-2">
           Your cart is empty
         </Heading>
@@ -31,7 +31,7 @@ export const CartSummary = () => {
   }
 
   return (
-    <div className="bg-gray-50 p-6 rounded space-y-4">
+    <div className="bg-gray-50 p-6 space-y-4">
       <Heading level={3}>Order Summary</Heading>
 
       <div className="space-y-2 border-b pb-4">
@@ -51,7 +51,7 @@ export const CartSummary = () => {
       </div>
 
       <Link href="/checkout">
-        <Button className="w-full" size="lg">
+        <Button className="w-full py-4 rounded-none!">
           Proceed to Checkout
         </Button>
       </Link>

@@ -154,7 +154,7 @@ Full-width section wrapper with vertical padding.
 
 **Example**:
 ```tsx
-<Section className="bg-white">
+<Section className="bg-background">
   {/* Content */}
 </Section>
 ```

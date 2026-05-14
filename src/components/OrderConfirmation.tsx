@@ -14,7 +14,7 @@ export const OrderConfirmation = ({ order }: OrderConfirmationProps) => {
     <div className="text-center max-w-2xl mx-auto space-y-6">
       {/* Success Icon */}
       <div className="flex justify-center">
-        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+        <div className="w-16 h-16 bg-green-100 flex items-center justify-center">
           <svg
             className="w-8 h-8 text-green-600"
             fill="currentColor"
@@ -33,7 +33,7 @@ export const OrderConfirmation = ({ order }: OrderConfirmationProps) => {
       <Text className="text-gray-600">Thank you for your purchase.</Text>
 
       {/* Order Details */}
-      <div className="bg-gray-50 p-6 rounded space-y-4">
+      <div className="bg-gray-50 p-6 space-y-4">
         <div>
           <Text size="sm" className="text-gray-500">
             Order Number
